@@ -9,7 +9,7 @@ def about():
     return "This is the about page."
 
 @app.route("/<username>")
-def username(usename):
+def username(username):
     return f"hello{username}"
 
 if __name__=='__main__':
