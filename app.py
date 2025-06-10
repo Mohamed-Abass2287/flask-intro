@@ -1,5 +1,13 @@
 from flask import Flask 
+from models import db, User
+from flask_migrate import Migrate
+
+
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///school.db'
+
+Migrate = Migrate(app, db)
+db.__init__(app)
 
 @app.route('/')
 def index():
