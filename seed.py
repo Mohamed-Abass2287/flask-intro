@@ -1,27 +1,23 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy_serializer import SerializerMixin
+from models import db, User, Post
+from app import app
 
-db = SQLAlchemy()
+with app.app_context():
 
-class User(db.Model, SerializerMixin):
-    __tablename__ = 'users'
+    print("Seeding users...")
 
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String)
-    middle_name = db.Column(db.String)
-    last_name = db.Column(db.String)
-    username = db.Column(db.String, unique=True)
-    posts = db.relationship('Post', back_populates='user')
+    christina = User(first_name="Christina", last_name="Max", middle_name="Mary", username="chris")
+    nevil = User(first_name="Nevil", last_name="Brandon", middle_name="Lence", username="brandy")
+    alice = User(first_name="Alice", last_name="Chelsea", middle_name="Migan", username="rihanna")
 
-    
+    db.session.add_all([christina, nevil, alice])
+    db.session.commit()
 
-class Post(db.Model, SerializerMixin):
-    __tablename__ = "posts"
+    print('Seeding posts...')
+    p1 = Post(post_title="Adventure", post_content="I love adventure", user=alice)
+    p2 = Post(post_title="Travelling", post_content="The Dubai trip was interesting", user=alice)
+    p3 = Post(post_title="Banking", post_content="This sector is corrupt", user=nevil)
+    p4 = Post(post_title="Education", post_content="Education is power", user=christina)
+    p5 = Post(post_title="Economy", post_content="Our economy is doing bad", user=nevil)
 
-    serialize_rules = ("-user.posts",)
-
-    id = db.Column(db.Integer, primary_key=True)
-    post_title = db.Column(db.String, nullable=False)
-    post_content = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship('User', back_populates='posts')
+    db.session.add_all([p1, p2, p3, p4, p5])
+    db.session.commit()
