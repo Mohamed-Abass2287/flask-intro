@@ -1,4 +1,3 @@
-# flask-intro
 <!-- Querying database -->
 <!-- sql => structured query language -->
 insert => adding new record
@@ -102,16 +101,16 @@ blueprints
 <!-- flask restful api -->
 classes
 
-<!-- constraints & validatio -->
-db.check constraint()
-constraints=>this affect the columns
-example => email =>@,unique,
-           username =>unique and of a given length
+<!-- constraints & validation -->
+db.CheckConstraint()
+contraints => this affect the columns
+example => email => @, unique
+            username => unique and of a given length
 
 <!-- validation -->
 doing a check to ensure data is valid
 
-exception hanhlers
+exception handlers
 try:
 
 except
