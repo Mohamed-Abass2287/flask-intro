@@ -10,7 +10,9 @@ class User(db.Model, SerializerMixin):
     first_name = db.Column(db.String)
     middle_name = db.Column(db.String)
     last_name = db.Column(db.String)
-    username = db.Column(db.String, unique=True)
+    username = db.Column(db.String, unique=True, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, nullable=False)
     posts = db.relationship('Post', back_populates='user')
 
     
