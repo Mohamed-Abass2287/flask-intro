@@ -15,6 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///school.db'
 migrate = Migrate(app, db)
 
 # initialize the app with the extension
+
 db.init_app(app)
 api = Api(app)
 CORS(app)
